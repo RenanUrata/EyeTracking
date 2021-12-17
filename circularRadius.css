@@ -1,0 +1,31 @@
+:root {
+    --canvasSize: 100;
+    --targetSize: calc(var(--canvasSize)*0.1vh);
+    --bgColor: rgb(63, 63, 63);
+    --targetColor: rgb(0, 130, 190);
+    --offScreenPosition: calc(var(--targetSize)*-1);
+    --circularRadius: translateX(calc(var(--canvasSize)*0.4vh));
+    /* --canvasSizePercentage: 95; */
+    --canvasWidth: calc(var(--canvasSize)*1vw);
+    --canvasHeigh: calc(var(--canvasSize)*1vh);
+    --deltaY: calc(var(--canvasHeigh) - var(--targetSize));
+    --deltaX: 0.1*var(--canvasWidth);
+    --deltaYh: 0.1*var(--canvasHeigh);
+    --deltaXh: calc(var(--canvasWidth) - var(--targetSize));
+    --radius: 0.4*var(--canvasHeigh);
+}
+
+@keyframes circularRadius {
+    0% {
+        transform: translateX(calc(var(--canvasSize)*0.1vh));
+    }
+    25% {
+        transform: translateY(calc(var(--canvasSize)*0.45vh));
+    }
+    50% {
+        transform: translateX(calc(var(--canvasSize)*0.1vh));
+    }
+    100% {
+        transform: translateY(calc(var(--canvasSize)*-0.45vh));
+    }
+}

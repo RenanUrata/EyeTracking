@@ -1,0 +1,253 @@
+:root {
+    --canvasSize: 100;
+    --targetSize: calc(var(--canvasSize)*0.1vh);
+    --bgColor: rgb(63, 63, 63);
+    --targetColor: rgb(0, 130, 190);
+    --offScreenPosition: calc(var(--targetSize)*-1);
+    --circularRadius: translateX(calc(var(--canvasSize)*0.4vh));
+    /* --canvasSizePercentage: 95; */
+    --canvasWidth: calc(var(--canvasSize)*1vw);
+    --canvasHeigh: calc(var(--canvasSize)*1vh);
+    --deltaY: calc(var(--canvasHeigh) - var(--targetSize));
+    --deltaX: 0.1*var(--canvasWidth);
+    --deltaYh: 0.1*var(--canvasHeigh);
+    --deltaXh: calc(var(--canvasWidth) - var(--targetSize));
+    --radius: 0.4*var(--canvasHeigh);
+}
+
+.appRoot {
+    overflow: hidden;
+    width: calc(var(--canvasSize)*1vw);
+    height: calc(var(--canvasSize)*1vh);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--bgColor);
+}
+
+.container {
+    width: inherit;
+    height: inherit;
+    position: relative;
+}
+
+.target {
+    width: var(--targetSize);
+    height: var(--targetSize);
+    background-color: var(--targetColor);
+    border-radius: 50%;
+    position: absolute;
+    transform: translate( var(--offScreenPosition), var(--offScreenPosition));
+}
+
+.animateGS {
+    animation-timing-function: ease-in-out;
+    animation-duration: 1000ms;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+.side2side {
+    animation-name: side2side;
+}
+
+.top2bottom {
+    animation-name: top2bottom;
+}
+
+.circular {
+    animation-name: circular;
+    animation-duration: 2000ms;
+    left: calc(50vw - var(--targetSize)*0.5);
+    top: calc(50vh - var(--targetSize)*0.5);
+}
+
+.circularRadius {
+    left: calc(50vw - var(--targetSize)*0.5);
+    top: calc(50vh - var(--targetSize)*0.5);
+    animation-name: circularRadius;
+    animation-duration: 1000ms;
+}
+
+@keyframes side2side {
+    from {
+        transform: translate(0, calc(50vh - var(--targetSize)*0.5));
+    }
+    to {
+        transform: translate(calc(100vw - var(--targetSize)), calc(50vh - var(--targetSize)*0.5));
+    }
+}
+
+@keyframes top2bottom {
+    from {
+        transform: translate(calc(50vw - var(--targetSize)*0.5), 0);
+    }
+    to {
+        transform: translate(calc(50vw - var(--targetSize)*0.5), calc(100vh - var(--targetSize)));
+    }
+}
+
+@keyframes circular {
+    from {
+        transform: rotate(-90deg) var(--circularRadius);
+    }
+    to {
+        transform: rotate(270deg) var(--circularRadius);
+    }
+}
+
+.trackingOrbit {
+    animation-name: trackingOrbit;
+    animation-duration: 4s;
+    top: 50%;
+    left: 50%;
+    margin: calc(var(--targetSize)*-0.5) 0 0 calc(var(--targetSize)*-0.5);
+}
+
+.trackingVertical {
+    animation-name: trackingVertical;
+    animation-duration: 20s;
+    /* top: calc(var(--targetSize)*-0.5);
+    left: calc(var(--targetSize)*-0.5); */
+    margin: 0;
+}
+
+.trackingHorizontal {
+    animation-name: trackingHorizontal;
+    animation-duration: 20s;
+    /* top: calc(var(--targetSize)*-0.5);
+    left: calc(var(--targetSize)*-0.5); */
+    margin: 0;
+}
+
+@keyframes trackingVertical {
+    0% {
+        transform: translate(calc(0*var( --deltaX)), 0);
+    }
+    5% {
+        transform: translate(calc(0*var( --deltaX)), var( --deltaY));
+    }
+    10% {
+        transform: translate(calc(1*var( --deltaX)), 0);
+    }
+    15% {
+        transform: translate(calc(1*var( --deltaX)), var( --deltaY));
+    }
+    20% {
+        transform: translate(calc(2*var( --deltaX)), 0);
+    }
+    25% {
+        transform: translate(calc(2*var( --deltaX)), var( --deltaY));
+    }
+    30% {
+        transform: translate(calc(3*var( --deltaX)), 0);
+    }
+    35% {
+        transform: translate(calc(3*var( --deltaX)), var( --deltaY));
+    }
+    40% {
+        transform: translate(calc(4*var( --deltaX)), 0);
+    }
+    45% {
+        transform: translate(calc(4*var( --deltaX)), var( --deltaY));
+    }
+    50% {
+        transform: translate(calc(5*var( --deltaX)), 0);
+    }
+    55% {
+        transform: translate(calc(5*var( --deltaX)), var( --deltaY));
+    }
+    60% {
+        transform: translate(calc(6*var( --deltaX)), 0);
+    }
+    65% {
+        transform: translate(calc(6*var( --deltaX)), var( --deltaY));
+    }
+    70% {
+        transform: translate(calc(7*var( --deltaX)), 0);
+    }
+    75% {
+        transform: translate(calc(7*var( --deltaX)), var( --deltaY));
+    }
+    80% {
+        transform: translate(calc(8*var( --deltaX)), 0);
+    }
+    85% {
+        transform: translate(calc(8*var( --deltaX)), var( --deltaY));
+    }
+    90% {
+        transform: translate(calc(9*var( --deltaX)), 0);
+    }
+    100% {
+        transform: translate(calc(9*var( --deltaX)), var( --deltaY));
+    }
+    /* 100% {
+        transform: translate(calc(9.5*var( --deltaX)), 0);
+    } */
+}
+
+@keyframes trackingHorizontal {
+    0% {
+        transform: translate(0, calc(0*var( --deltaYh)));
+    }
+    5% {
+        transform: translate( var( --deltaXh), calc(0*var( --deltaYh)));
+    }
+    10% {
+        transform: translate(0, calc(1*var( --deltaYh)));
+    }
+    15% {
+        transform: translate( var( --deltaXh), calc(1*var( --deltaYh)));
+    }
+    20% {
+        transform: translate(0, calc(2*var( --deltaYh)));
+    }
+    25% {
+        transform: translate( var( --deltaXh), calc(2*var( --deltaYh)));
+    }
+    30% {
+        transform: translate(0, calc(3*var( --deltaYh)));
+    }
+    35% {
+        transform: translate( var( --deltaXh), calc(3*var( --deltaYh)));
+    }
+    40% {
+        transform: translate(0, calc(4*var( --deltaYh)));
+    }
+    45% {
+        transform: translate( var( --deltaXh), calc(4*var( --deltaYh)));
+    }
+    50% {
+        transform: translate(0, calc(5*var( --deltaYh)));
+    }
+    55% {
+        transform: translate( var( --deltaXh), calc(5*var( --deltaYh)));
+    }
+    60% {
+        transform: translate(0, calc(6*var( --deltaYh)));
+    }
+    65% {
+        transform: translate( var( --deltaXh), calc(6*var( --deltaYh)));
+    }
+    70% {
+        transform: translate(0, calc(7*var( --deltaYh)));
+    }
+    75% {
+        transform: translate( var( --deltaXh), calc(7*var( --deltaYh)));
+    }
+    80% {
+        transform: translate(0, calc(8*var( --deltaYh)));
+    }
+    85% {
+        transform: translate( var( --deltaXh), calc(8*var( --deltaYh)));
+    }
+    90% {
+        transform: translate(0, calc(9*var( --deltaYh)));
+    }
+    100% {
+        transform: translate( var( --deltaXh), calc(9*var( --deltaYh)));
+    }
+    /* 100% {
+        transform: translate(0, calc(9.5*var( --deltaYh)));
+    } */
+}
