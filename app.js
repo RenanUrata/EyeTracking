@@ -16,7 +16,7 @@ let selectedAnimation = 0;
 
 appRoot.addEventListener('click', ev => {
     target.classList = 'target animateGS'
-
+    title.classList = 'hide'
     console.log(selectedAnimation, animationList[selectedAnimation]);
 
     target.classList = 'target animateGS'
